@@ -78,6 +78,14 @@ users: async () => {
           
             throw new AuthenticationError('You need to be logged in!');
           },
+
+          updateThought: async(parent, {id, thoughtText}) => {
+            const thought = await User.findOneAndUpdate(
+              {_id: id}, {thoughtText}, {new: true});
+            
+            return thought
+          },
+          
           addReaction: async (parent, { thoughtId, reactionBody }, context) => {
             if (context.user) {
               const updatedThought = await Thought.findOneAndUpdate(
