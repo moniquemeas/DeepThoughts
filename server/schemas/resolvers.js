@@ -80,7 +80,7 @@ users: async () => {
           },
 
           updateThought: async(parent, {id, thoughtText}) => {
-            const thought = await User.findOneAndUpdate(
+            const thought = await Thought.findOneAndUpdate(
               {_id: id}, {thoughtText}, {new: true});
             
             return thought
